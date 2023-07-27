@@ -17,12 +17,7 @@ export function SetupPage() {
   }, [storeModal.isOpen, storeModal.onOpen]);
   
 
-  return (
-    <div className="p-4">
-      Root Page
-    </div>
-    
-  )
+  return null;
 }
 
-export default SetupPage
+export default SetupPage;
