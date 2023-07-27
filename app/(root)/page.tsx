@@ -5,14 +5,16 @@ import { useEffect } from "react";
 import { useStoreModal } from "@/hooks/use-store-modal";
 
 export function SetupPage() {
-  const onOpen = useStoreModal((state) => state.onOpen);
-  const isOpen = useStoreModal((state) => state.isOpen);
+
+  const storeModal = useStoreModal();
+  // const onOpen = useStoreModal((state) => state.onOpen);
+  // const isOpen = useStoreModal((state) => state.isOpen);
 
   useEffect(() => {
-    if (!isOpen) {
-      onOpen();
+    if (!storeModal.isOpen) {
+      storeModal.onOpen();
     }
-  }, [isOpen, onOpen]);
+  }, [storeModal.isOpen, storeModal.onOpen]);
   
 
   return (
