@@ -8,16 +8,24 @@ export async function POST(req: Request){
         const { userId } = auth();
         const body = await req.json();
         const { name } = body;
+        const nameIsExist = await prismadb.stores.findUnique({
+            where: {
+                name
+            }
+        })
 
         if(!userId){
-            return new NextResponse("Unauthorized", { status : 401});
+            return new NextResponse("Unauthorized", { status : 401 });
         }
 
         if(!name){
-            return new NextResponse("Name is required", { status : 400});
+            return new NextResponse("Name is required", { status : 400 });
         }
 
-        console.log(name, userId);
+        if(nameIsExist){
+            return new NextResponse("Store name already exist", { status: 400 })
+        }
+
         const store = await prismadb.stores.create({
             data:{
                 name,
