@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
+import { ApiAlert } from "@/components/ui/api-alert";
+import { useOrigin } from "@/hooks/use-origin";
 
 interface SettingsFormProps {
     initialData : stores
@@ -37,6 +39,7 @@ type SettingsFormValue = z.infer<typeof formSchema>;
 export const SettingsForm: React.FC<SettingsFormProps> = ({initialData}) => {
     const params = useParams();
     const router = useRouter();
+    const origin = useOrigin();
 
     const [open,setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -70,12 +73,13 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({initialData}) => {
             setLoading(true);
             await axios.delete(`/api/stores/${params.storeId}`)
             router.refresh();
-            toast.success("Delete success")
+            router.push("/");
+            toast.success("Delete success");
         }catch(err){
-            console.log(err)
             toast.error("Something went wrong")
         }finally{
             setLoading(false);
+            setOpen(false);
         }
     }
 
@@ -133,6 +137,11 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({initialData}) => {
                     <Button className="ml-auto" disabled={loading} type="submit">Save Changes</Button>
                 </form>
             </Form>
+            <Separator/>
+            <ApiAlert 
+                title="NEXT_PUBLIC_API_URL" 
+                description={`${origin}/api/${params.storeId}`} 
+                variant="public" />
         </>
     )
 }

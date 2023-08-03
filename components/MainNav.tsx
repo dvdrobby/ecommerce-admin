@@ -13,10 +13,20 @@ export const MainNav = ({
 
     const routes = [
         {
+            href: `/${params.storeId}/`,
+            label: 'Dashboard',
+            active: pathName === `/${params.storeId}`,
+        },
+        {
+            href: `/${params.storeId}/billboards`,
+            label: 'Billboards',
+            active: pathName === `/${params.storeId}/billboardss}`,
+        },
+        {
             href: `/${params.storeId}/settings`,
             label: 'Settings',
-            active: pathName === `/${params.storeId}/settingss}`,
-        }
+            active: pathName === `/${params.storeId}/settings}`,
+        },
     ];
     return (
         <nav
