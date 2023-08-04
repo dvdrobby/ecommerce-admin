@@ -20,12 +20,12 @@ export const MainNav = ({
         {
             href: `/${params.storeId}/billboards`,
             label: 'Billboards',
-            active: pathName === `/${params.storeId}/billboardss}`,
+            active: pathName === `/${params.storeId}/billboards`,
         },
         {
             href: `/${params.storeId}/settings`,
             label: 'Settings',
-            active: pathName === `/${params.storeId}/settings}`,
+            active: pathName === `/${params.storeId}/settings`,
         },
     ];
     return (
