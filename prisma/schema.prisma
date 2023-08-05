@@ -15,6 +15,7 @@ model stores {
   name         String   @unique
   userId       String   
   billboards   Billboard[] @relation("StoreToBillboard")
+  categories   Category[] @relation("StoreToCategory")
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt    
 }
@@ -25,6 +26,17 @@ model Billboard {
   store       stores    @relation("StoreToBillboard", fields: [storeId], references: [id])
   label       String
   imageUrl    String
+  categories  Category[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+model Category {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  storeId     String    @db.ObjectId
+  store       stores    @relation("StoreToCategory", fields: [storeId], references: [id])
+  billboardId String    @db.ObjectId
+  billboard   Billboard @relation(fields: [billboardId], references: [id])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
