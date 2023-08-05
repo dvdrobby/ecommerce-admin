@@ -23,7 +23,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { 
+    Select, 
+    SelectContent, 
+    SelectItem, 
+    SelectTrigger, 
+    SelectValue 
+} from "@/components/ui/select";
 
 interface CategoryFormProps {
     initialData : Category | null
@@ -154,23 +160,28 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({initialData, billboar
                             render={({field}) => (
                                 <FormItem>
                                     <FormLabel>Billboard</FormLabel>
-                                    <FormControl>
-                                        <Select>
+                                    <Select
+                                        disabled={loading}
+                                        onValueChange={field.onChange}
+                                        value={field.value}
+                                        defaultValue={field.value}
+                                    >
+                                        <FormControl>
                                             <SelectTrigger>
                                                 <SelectValue 
                                                     defaultValue={field.value}
                                                     placeholder="Select a billboard" />
                                             </SelectTrigger>
-                                            <SelectContent>
-                                                {billboards.map((billboard)=> (
-                                                    <SelectItem key={billboard.id} value={billboard.id}>{billboard.label}</SelectItem>
-                                                ))}
-                                            </SelectContent>
-                                        </Select>
-                                    </FormControl>
+                                        </FormControl>
+                                        <SelectContent>
+                                            {billboards.map((billboard)=> (
+                                                <SelectItem key={billboard.id} value={billboard.id}>{billboard.label}</SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
                                     <FormMessage/>
                                 </FormItem>
-                                )}                     
+                            )}                     
                         />
                     </div>
                     <Button className="ml-auto" disabled={loading} type="submit">{action}</Button>
