@@ -19,28 +19,33 @@ export const MainNav = ({
         },
         {
             href: `/${params.storeId}/billboards`,
-            label: 'Billboard',
+            label: 'Billboards',
             active: pathName === `/${params.storeId}/billboards`,
         },
         {
             href: `/${params.storeId}/categories`,
-            label: 'Category',
+            label: 'Categories',
             active: pathName === `/${params.storeId}/categories`,
         },
         {
             href: `/${params.storeId}/sizes`,
-            label: 'Size',
+            label: 'Sizes',
             active: pathName === `/${params.storeId}/sizes`,
         },
         {
             href: `/${params.storeId}/colors`,
-            label: 'Color',
+            label: 'Colors',
             active: pathName === `/${params.storeId}/colors`,
         },
         {
             href: `/${params.storeId}/products`,
-            label: 'Product',
+            label: 'Products',
             active: pathName === `/${params.storeId}/products`,
+        },
+        {
+            href: `/${params.storeId}/orders`,
+            label: 'Orders',
+            active: pathName === `/${params.storeId}/orders`,
         },
         {
             href: `/${params.storeId}/settings`,
